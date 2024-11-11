@@ -1,6 +1,8 @@
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
-import random, secrets
+import random, os
+
+API_TOKEN = os.getenv("API_TOKEN")
 
 # Dictionary to keep track of user states
 guess_data = {}
@@ -51,7 +53,7 @@ def guess(update: Update, context: CallbackContext) -> None:
 
 # Main function to start the bot
 def main() -> None:
-    updater = Updater(secrets.API_TOKEN)
+    updater = Updater(API_TOKEN)
 
     updater.dispatcher.add_handler(CommandHandler("start", start))
     updater.dispatcher.add_handler(CommandHandler("guess", guess, pass_args=True))
@@ -61,4 +63,3 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
-jnkb
